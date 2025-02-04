@@ -18,6 +18,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace KPKochetov.Pages.PagesInTable
 {
@@ -27,16 +28,18 @@ namespace KPKochetov.Pages.PagesInTable
     public partial class Garage : Page
     {
         ClassModules.Garage parts;
-        public Garage(ClassModules.Garage _parts)
+        public Garage(ClassModules.Garage _garage)
         {
             InitializeComponent();
-            parts = _parts;
+            parts = _garage;
             foreach (var item in Connection.technique)
             {
                 ComboBoxItem cb_locations = new ComboBoxItem();
                 cb_locations.Tag = item.Id_technique;
                 cb_locations.Content = "Вид техники: " + item.Name_technique;
-
+                Locations.Text = _garage.Locations;
+                Vmestim.Text = _garage.Vmestim.ToString();
+                Remrabot.Text = _garage.Remrabot;
                 cb_locations.IsSelected = true;
 
                 VidTS.Items.Add(cb_locations);
@@ -52,8 +55,8 @@ namespace KPKochetov.Pages.PagesInTable
                 int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.Garage);
                 if (parts.Vmestim == 0)
                 {
-                    string query = $"Insert Into Garage ([Id_garage], [Locations], [Vmestim], [VidTS], [Date_of_foundation])" +
-                        $"Values ({id.ToString()}, '{Locations.Text}',{Vmestim.Text} ,{Id_сeh_temp.Id_technique.ToString()}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
+                    string query = $"Insert Into Garage ([Id_garage], [Locations], [Vmestim], [VidTS], [Remrabot], [Date_of_foundation])" +
+                        $"Values ({id.ToString()}, '{Locations.Text}',{Vmestim.Text} ,{Id_сeh_temp.Id_technique.ToString()},'{Remrabot.Text}' ,'{DateTime.Now.ToString("yyyy-MM-dd")}')";
                     var query_apply = Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
@@ -64,7 +67,7 @@ namespace KPKochetov.Pages.PagesInTable
                 }
                 else
                 {
-                    string query = $"Update Garage Set Locations = '{Locations.Text}', Vmestim = '{Vmestim}' Where Id_garage = {parts.Id_garage}";
+                    string query = $"Update Garage Set Locations = '{Locations.Text}', Vmestim = '{Vmestim.Text}', VidTS = '{Id_сeh_temp.Id_technique.ToString()}', Remrabot='{Remrabot.Text}' Where Id_garage = {parts.Id_garage}";
                     var query_apply = Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {

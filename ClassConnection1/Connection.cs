@@ -35,7 +35,7 @@ namespace ClassConnection
         {
             try
             {
-                string Path = $@"Server=DESKTOP-JPS19OC\SQLEXPRESS;Database=kpkochetov;Trusted_Connection=True;User Id=sa;Password=root";
+                string Path = $@"Server=DESKTOP-PM8TUKA;Database=kpkochetov;Trusted_Connection=True;User Id=sa;Password=root";
                 //string Path = $@"Server=student.permaviat.ru;Database=base1_ISP_21_2_23;User Id=ISP_21_2_23;Password=3frQxZ83o#";
                 SqlConnection connection = new SqlConnection(Path);
                 connection.Open();
@@ -316,7 +316,7 @@ namespace ClassConnection
                     {
                         worksheet.Cells[row, 1].Value = record.Id_technique;
                         worksheet.Cells[row, 2].Value = record.Name_technique;
-                        worksheet.Cells[row, 3].Value = voditel.First(x => x.Id_voditel == record.Vmestim).Name_voditel;
+                        worksheet.Cells[row, 3].Value = record.Vmestim;
                         worksheet.Cells[row, 4].Value = record.Characteristics;
                         row++;
                     }

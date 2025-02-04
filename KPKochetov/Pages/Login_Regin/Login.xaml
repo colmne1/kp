@@ -21,7 +21,7 @@
                     <SolidColorBrush Color="#FF2C2C2C" Opacity="1.0"/>
                 </Border.Background>
             </Border>
-            <Image Source="/Images/logo.png" Margin="19,8,0,0" HorizontalAlignment="Left" Width="41" Height="42" VerticalAlignment="Top"/>
+            <Image Source="/Images/street.png" Margin="19,8,0,0" HorizontalAlignment="Left" Width="41" Height="42" VerticalAlignment="Top"/>
         </Grid>
         <Border Margin="10,70,10,10" CornerRadius="15,15,15,15">
             <Border.Background>

@@ -31,6 +31,7 @@ namespace KPKochetov.Pages.PagesInTable
             {
                 Name_technique.Text = _technique.Name_technique;
                 Characteristics.Text = _technique.Characteristics;
+                Vmestim.Text = _technique.Vmestim.ToString();
             }
 
         }
